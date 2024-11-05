@@ -22,9 +22,10 @@ class CalculatorAPIView(GenericAPIView):
 
         result: Decimal = None
         ## assignment1: 이곳에 과제를 작성해주세요
-        input_a = serializer.validated_data["input_a"]
-        input_b = serializer.validated_data["input_b"]
+        input_a = Decimal(serializer.validated_data["input_a"])
+        input_b = Decimal(serializer.validated_data["input_b"])
         operator = serializer.validated_data["operator"]
+
         if operator == "+":
             result = input_a + input_b
         elif operator == "-":
