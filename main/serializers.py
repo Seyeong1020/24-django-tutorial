@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-
+from main.models import Student
 class StudentSerializer(serializers.ModelSerializer):
     """
     학생 모델에 대한 Serializer
