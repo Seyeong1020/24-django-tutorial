@@ -10,6 +10,7 @@ from rest_framework.mixins import (
 )
 
 from main.serializers import StudentSerializer
+from main.models import Student
 
 
 class StudentListAPIView(ListModelMixin, CreateModelMixin, GenericAPIView):
