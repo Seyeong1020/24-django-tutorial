@@ -42,10 +42,10 @@ class StudentAPIView(
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-    def get(self, request):
-        return self.retrieve(request)
-    def patch(self, request):
-        return self.partial_update(request)
-    def delete(self, request):
-        return self.destroy(request)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
     ### end assignment2
