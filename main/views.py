@@ -18,6 +18,7 @@ from main.serializers import (
 )
 from rest_framework import generics
 
+from rest_framework import status
 
 class LoginView(GenericAPIView):
     authentication_classes = []
