@@ -92,8 +92,10 @@ class StudyParticipationListView(
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
-        instance = self.get_object()
-        if request.user != instance.user:
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        if request.user.id != serializer.validated_data["user"]:
             return Response(status=status.HTTP_403_FORBIDDEN)
         else:
             return self.create(request, *args, **kwargs)
