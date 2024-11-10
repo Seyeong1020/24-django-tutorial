@@ -9,12 +9,12 @@ from rest_framework.mixins import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from main.models import Study
+from main.models import Study, StudyParticipation
 from django.contrib.auth import login, authenticate
 from main.serializers import (
     StudySerializer,
     LoginSerializer,
-    UserSerializer,
+    UserSerializer, StudyParticipationSerializer,
 )
 from rest_framework import generics
 
@@ -82,6 +82,14 @@ class StudyParticipationListView(
     """
 
     ### assignment3: 이곳에 과제를 작성해주세요
+    permission_classes = [IsAuthenticated]
+
+    queryset = Study.objects.all()
+    serializer_class = StudyParticipationSerializer
+    def get_queryset(self):
+        return StudyParticipation.objects.filter(user=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
     ### end assignment3
 
 
@@ -94,4 +102,11 @@ class StudyParticipationView(
     """
 
     ### assignment3: 이곳에 과제를 작성해주세요
+    permission_classes = [IsAuthenticated]
+
+    serializer_class = StudyParticipationSerializer
+
+    def get_queryset(self):
+        
+        return super().get_queryset().filter(user=self.request.user)
     ### end assignment3
