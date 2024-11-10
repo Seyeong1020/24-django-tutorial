@@ -95,7 +95,7 @@ class StudyParticipationListView(
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
-        if request.user.id != serializer.validated_data["user"]:
+        if request.user.id != serializer.validated_data["user"].id:
             return Response(status=status.HTTP_403_FORBIDDEN)
         else:
             return self.create(request, *args, **kwargs)
